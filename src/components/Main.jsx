@@ -4,16 +4,7 @@ import ClaudeReceipe from './ClaudeReceipe';
 import { getRecipeFromMistral } from '../ai';
 
 const Main = () => {
-  const biryani = [
-    'red onion',
-    'tomato',
-    'paneer',
-    'capsicum',
-    'rice',
-    'mashroom',
-  ];
-
-  const [ingradients, setIngradients] = useState(biryani);
+  const [ingradients, setIngradients] = useState([]);
   const [item, setItem] = useState('');
   const [receipe, setReceipe] = useState('');
 
@@ -30,13 +21,12 @@ const Main = () => {
   };
 
   const getReceipe = async () => {
-    console.log('get Receipe clicked');
     const receipe = await getRecipeFromMistral(ingradients);
     setReceipe(receipe);
   };
 
   return (
-    <main className="px-5 md:px-50 py-4 border border-white">
+    <main className="px-5 lg:px-50 py-4">
       <form
         onSubmit={handleSubmit}
         className="flex justify-between items-center gap-5"
@@ -54,7 +44,7 @@ const Main = () => {
           type="submit"
           className="px-5 py-2 text-base bg-green-500 rounded-lg cursor-pointer"
         >
-          + Add
+          + Add ingradients
         </button>
       </form>
       <IngradientList ingradients={ingradients} />
